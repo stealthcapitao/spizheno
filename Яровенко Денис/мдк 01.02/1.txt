@@ -1,0 +1,84 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+struct Person //структура
+{
+char name[1000]; //им€
+long chis; //число
+long mec; //число
+long god; //год рождени€
+};
+
+void input(Person *persons) {
+fflush(stdin);
+cout<<"¬ведите фамилию: ";
+cin>>persons->name;
+cout<<"¬ведите день рождени€: ";
+fflush(stdin);
+cin>>persons->chis;
+if(persons->chis > 31){ //проверка на число
+cout<<"ќшибка!"; 
+exit(1);}
+fflush(stdin);
+cout<<"¬ведите мес€ц рождени€: ";
+cin>>persons->mec;
+if(persons->mec > 12){ //проверка на мес€ц
+cout<<"ќшибка!";
+exit(1);}
+fflush(stdin);
+cout<<"¬ведите год рождени€: ";
+cin>>persons->god;
+if( persons->god> 2019){ //проверка на год
+cout<<"ќшибка!";
+exit(1);}
+
+}
+
+
+void output(Person *persons){
+cout<<"\n‘амили€: "<<persons->name;
+cout<<"\n„исло рождени€: "<<persons->chis;
+cout<<"\nћес€ц рождени€: "<<persons->mec;
+cout<<"\n√од рождени€: "<<persons->god;
+}
+
+
+
+int main()
+{
+int n; //кол-во человек
+cout<<" олличетсво людей n = ";
+cin>>n;
+Person *persons = new Person[n]; //выдел€ем пам€ть под массив структур
+for (int i=0;i<n;i++){
+input(&persons[i]);
+}
+for (int i=0;i<n;i++){
+output(&persons[i]);
+}
+
+int number; //искомый мес€ц
+int count=0; //счетчик найденных совпадений
+cout<<"\n¬ведите искомый мес€ц дн€ рождени€: ";
+cin>>number;
+for (int i=0; i<n; i++)
+{
+if (persons[i].mec==number) //если мес€ца совпали
+{
+cout<<persons[i].name<<endl; //выводим фамилию
+count++; //увеличиваем счетчик
+}
+
+}
+if (count==0) //если счетчик не изменилс€, значит такого мес€цы нет
+{
+cout<<"„еловека с таким мес€цем рождени€ нет";
+}
+
+
+delete[] persons; //освобождаем пам€ть
+getch();
+return(0);
+}

@@ -1,0 +1,88 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+
+cout<<"1 while"<<endl;
+cout<<"2 do while"<<endl;
+cout<<"3 выход"<<endl;
+
+int num;
+cin>>num;
+
+switch (num) {
+
+case 1: {
+int b, n;
+int begin = 1;
+float y = 0;
+while (begin) {
+int i = 1;
+cout<<"Введите b = ";
+cin>>b;
+cout<<"Введите n = ";
+cin>>n;
+
+while (n <= 0) {
+cout<<"Ошибка... Повторно введите число n = ";
+cin>>n;
+}
+
+while (i <= n) {
+y+= (4 * b * pow(i, 2)) / (1 + (i * cos(i)));
+i++;
+}
+
+cout<<"y = " << y <<endl;
+cout<<"1 Выход из программы"<<endl;
+cin>>begin;
+if (begin == 1) {
+exit(0);
+}
+y = 0;
+}
+break;
+}
+
+
+
+
+case 2: {
+int b, n;
+int begin = 1;
+float y = 0;
+do {
+y = 0;
+
+int i = 1;
+cout<<"Введите b = ";
+cin>>b;
+cout<<"Введите n = ";
+cin>>n;
+
+while (n == 0) {
+cout<<"Ошибка... Повторно введите число n = ";
+cin>>n;
+};
+
+do {
+y+= (4 * b * pow(i, 2)) / (1 + (i * cos(i)));
+i++;
+} while (i <= n);
+
+cout<<"y = " << y <<endl;
+cout<<"1 Выход из программы"<<endl;
+cin>>begin;
+
+if (begin == 1) {
+exit(0);
+}
+} while (begin);
+break;
+}
+}
+
+return 0;
+}

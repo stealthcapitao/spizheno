@@ -1,0 +1,37 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+void pf (float a, float b, float *p, float *f);
+
+float volume(float a, float b, float c);
+
+int main()
+{
+    float a,b,p,f;
+    cout<<"Введите a,b"<< endl;
+    cin>>a>>b;
+    if (a==0 || b==0) {
+        cout<<"Ошибка, вы ввели 0";
+        exit(0);
+    }
+    pf (a,b,&p,&f);
+    cout<<"Произведение="<<p<<endl;
+    cout<<"Формула="<<f;
+    return 0;
+}
+
+void pf (float a, float b, float *p, float *f)
+{
+    *p=a*b;
+    *f=sqrt(pow(a,2) + pow(b,2));
+}
