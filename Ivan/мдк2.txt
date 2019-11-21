@@ -1,0 +1,23 @@
+
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+
+using namespace std;
+
+struct Data 
+{
+    char surname[80];
+    int group;
+    int year;
+}
+
+int main()
+{
+    
+	setlocale(LC_ALL, "Russian");
+
+	
+
+	return 0;
+}

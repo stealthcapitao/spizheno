@@ -1,0 +1,120 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+// Ввод двумерного массива mxm
+
+void input (int **arr, int m){
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < m; j++){
+            arr[i][j] = -10 + rand() % 20;
+        }
+    }
+}
+
+// Вывод двумерного массива mxm
+
+void output (int **arr, int m) {
+    for (int i = 0; i < m; i++){
+        for (int j = 0; j < m; j++){
+            cout << arr[i][j] << "\t";
+            
+        }
+        cout << endl;
+    }
+}
+
+// Поиск максимального элемента
+
+int findMax (int **arr, int m) {
+    int max = arr[0][0];
+    
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            if (arr[i][j] >= max) {
+                max = arr[i][j];
+            };
+        }
+    };
+    return max;
+}
+
+// Увеличение всех элементов на максимальный
+
+void increaseBy (int **arr, int m, int max) {
+    
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < m; j++) {
+            arr[i][j] += max;
+        };
+    };
+    
+}
+
+// Сортировка 3 строки
+
+void thirdSortBy (int **arr, int m){
+    for (int i = 1; i < m; ++i) {
+        for (int j = 0; j < m - i; j++) {
+            if (arr[2][j] < arr[2][j+1]) {
+                int tmp = arr[2][j];
+                arr[2][j] = arr[2][j+1];
+                arr[2][j+1] = tmp;
+            }
+        }
+    }
+}
+
+void mainSort (int **arr, int m) {
+    for (int k = 0; k < m; k++)
+        for(int i = 0;i < m; i++)
+            for (int j = m - 1; j > i; j--)  
+                if (arr[k][j] < arr[k][j-1]) {  
+                    int tmp = arr[k][j];  
+                    arr[k][j] = arr[k][j-1];  
+                    arr[k][j-1] = tmp;
+                };
+}
+
+// Основная функция
+
+int main()
+{
+    
+    setlocale(LC_ALL, "Russian");
+    srand(time(NULL));
+    int check = 1;
+    cout << "Введите размер массива mxm: " << endl;
+    int m;
+    cin >> m;
+    while (check) {
+        if (m < 4) {
+            cout << "Размер массива может быть не меньше 4." << endl;
+            cout << "Повторите попытку: " << endl;
+            cin >> m;
+        } else {
+            check = 0;
+        };
+    };
+    
+    int **arr = new int*[m];
+    for (int i = 0; i < m; i++)
+        arr[i] = new int[m];
+    
+    input (arr, m);
+    cout << "Исходный массив: " << endl;
+    output (arr, m);
+    
+    cout << "Массив с увеличенными значениями на максимальное: " << endl;
+    int max = findMax(arr, m);
+    increaseBy (arr, m, max);
+    output (arr, m);
+    
+    cout << "Массив с измененной 3й строкой: " << endl;
+    thirdSortBy (arr, m);
+    output (arr, m);
+
+    return 0;
+    
+}
